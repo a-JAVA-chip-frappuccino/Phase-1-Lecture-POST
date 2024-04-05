@@ -51,3 +51,32 @@ function renderCharacters(charArr) {
     POST REQUEST
 ----------------------------------------------------- */
 
+const form = document.querySelector('form')
+
+form.addEventListener('submit', (e) => handleAddNewChar(e))
+
+function handleAddNewChar(e) {
+    e.preventDefault()
+
+    // creates new object based on submitted values
+    const newCharObj = {
+        name : e.target.name.value,
+        age : e.target.age.value,
+        image : e.target.image.value
+    }
+
+    // renderCharacters([newCharObj]) // non-persisting render of new object
+
+    // performs POST request
+    fetch(url, {
+        method : 'POST',
+        headers : {
+            'Accept' : 'application/json',
+            'content-type' : 'application/json'
+        },
+        body : JSON.stringify(newCharObj)
+    })
+        .then((resp) => resp.json())
+        .then((data) => renderCharacters([data])) // immediately renders POSTed object
+
+}
