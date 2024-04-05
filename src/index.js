@@ -1,5 +1,19 @@
+/* ----------------------------------------------------- 
+    VOCABULARY TERMS
+----------------------------------------------------- */
+
+/*
+
+    - POST request: a `fetch` call to add data
+
+*/
+
+const url = "http://localhost:3000/characters" // as the URL is used twice, it can be stored as a variable
+
 // fetches information from API endpoint and processes it into usable code
-// TODO: write GET request here
+fetch(url)
+    .then((resp) => resp.json())
+    .then((data) => renderCharacters(data))
 
 function renderCharacters(charArr) {
     // console.log(charArr)
@@ -32,3 +46,8 @@ function renderCharacters(charArr) {
 
     })
 }
+
+/* ----------------------------------------------------- 
+    POST REQUEST
+----------------------------------------------------- */
+
